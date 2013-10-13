@@ -40,8 +40,12 @@
             this.get_radio = new System.Windows.Forms.RadioButton();
             this.post_radio = new System.Windows.Forms.RadioButton();
             this.group_user_info_gb = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.session_id_lbl = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.jsessionid_lbl = new System.Windows.Forms.Label();
+            this.awslb_lbl = new System.Windows.Forms.Label();
             this.group_request_gb.SuspendLayout();
             this.group_user_info_gb.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +60,7 @@
             // 
             // parameter_txt
             // 
-            this.parameter_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.parameter_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.parameter_txt.Location = new System.Drawing.Point(12, 101);
             this.parameter_txt.Multiline = true;
             this.parameter_txt.Name = "parameter_txt";
@@ -96,7 +100,7 @@
             // 
             // respond_txt
             // 
-            this.respond_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.respond_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.respond_txt.Location = new System.Drawing.Point(269, 101);
             this.respond_txt.Multiline = true;
             this.respond_txt.Name = "respond_txt";
@@ -161,14 +165,28 @@
             // 
             // group_user_info_gb
             // 
+            this.group_user_info_gb.Controls.Add(this.awslb_lbl);
+            this.group_user_info_gb.Controls.Add(this.jsessionid_lbl);
+            this.group_user_info_gb.Controls.Add(this.label6);
+            this.group_user_info_gb.Controls.Add(this.label4);
             this.group_user_info_gb.Controls.Add(this.session_id_lbl);
             this.group_user_info_gb.Controls.Add(this.label5);
             this.group_user_info_gb.Location = new System.Drawing.Point(12, 240);
             this.group_user_info_gb.Name = "group_user_info_gb";
-            this.group_user_info_gb.Size = new System.Drawing.Size(661, 133);
+            this.group_user_info_gb.Size = new System.Drawing.Size(661, 206);
             this.group_user_info_gb.TabIndex = 9;
             this.group_user_info_gb.TabStop = false;
             this.group_user_info_gb.Text = "User Information";
+            // 
+            // session_id_lbl
+            // 
+            this.session_id_lbl.AutoSize = true;
+            this.session_id_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.session_id_lbl.Location = new System.Drawing.Point(91, 38);
+            this.session_id_lbl.Name = "session_id_lbl";
+            this.session_id_lbl.Size = new System.Drawing.Size(30, 17);
+            this.session_id_lbl.TabIndex = 6;
+            this.session_id_lbl.Text = "null";
             // 
             // label5
             // 
@@ -180,20 +198,50 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "SessionID :";
             // 
-            // session_id_lbl
+            // label4
             // 
-            this.session_id_lbl.AutoSize = true;
-            this.session_id_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.session_id_lbl.Location = new System.Drawing.Point(91, 38);
-            this.session_id_lbl.Name = "session_id_lbl";
-            this.session_id_lbl.Size = new System.Drawing.Size(0, 17);
-            this.session_id_lbl.TabIndex = 6;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "JSessionID :";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 93);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 17);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "AWSLB :";
+            // 
+            // jsessionid_lbl
+            // 
+            this.jsessionid_lbl.AutoSize = true;
+            this.jsessionid_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jsessionid_lbl.Location = new System.Drawing.Point(91, 65);
+            this.jsessionid_lbl.Name = "jsessionid_lbl";
+            this.jsessionid_lbl.Size = new System.Drawing.Size(30, 17);
+            this.jsessionid_lbl.TabIndex = 9;
+            this.jsessionid_lbl.Text = "null";
+            // 
+            // awslb_lbl
+            // 
+            this.awslb_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.awslb_lbl.Location = new System.Drawing.Point(76, 93);
+            this.awslb_lbl.Name = "awslb_lbl";
+            this.awslb_lbl.Size = new System.Drawing.Size(579, 110);
+            this.awslb_lbl.TabIndex = 10;
+            this.awslb_lbl.Text = "null";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 385);
+            this.ClientSize = new System.Drawing.Size(690, 458);
             this.Controls.Add(this.group_user_info_gb);
             this.Controls.Add(this.group_request_gb);
             this.Controls.Add(this.login_btn);
@@ -234,6 +282,10 @@
         private System.Windows.Forms.GroupBox group_user_info_gb;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label session_id_lbl;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label awslb_lbl;
+        private System.Windows.Forms.Label jsessionid_lbl;
     }
 }
 

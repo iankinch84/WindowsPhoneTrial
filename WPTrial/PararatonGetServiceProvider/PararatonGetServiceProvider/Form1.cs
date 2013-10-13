@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-
 namespace PararatonGetServiceProvider
 {
     public partial class Form1 : Form
     {
+        JSONHandler _jss;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,6 +20,9 @@ namespace PararatonGetServiceProvider
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Icon = PararatonGetServiceProvider.Properties.Resources.favicon;
+            this.Text = "Pararaton Get Service Provider";
+
             url_path_txt.ReadOnly = true;
             parameter_txt.ReadOnly = true;
             respond_txt.ReadOnly = true;
@@ -38,9 +42,9 @@ namespace PararatonGetServiceProvider
 
             string respond = temp.Request("user", "login", "post", parameter);
 
-            JSONHandler jss = new JSONHandler(respond);
+            _jss = new JSONHandler(respond);
 
-            dynamic data = jss.Deserialize();
+            dynamic data = _jss.Deserialize();
 
             if (data != null)
             {
@@ -53,6 +57,13 @@ namespace PararatonGetServiceProvider
                     group_request_gb.Enabled = true;
 
                     session_id_lbl.Text = data["message"];
+
+                    string header = temp.GetResposeHeaderDataString("Set-Cookie");
+                    char[] delimiter = { ';', '=' };
+                    string[] test = header.Split(delimiter);
+
+                    jsessionid_lbl.Text = test[1];
+                    awslb_lbl.Text = test[5];
                 }
             }
         }
@@ -65,11 +76,11 @@ namespace PararatonGetServiceProvider
                 method = "get";
             }
 
-            if (String.IsNullOrEmpty(url_path_txt.Text))
+            if (!String.IsNullOrEmpty(url_path_txt.Text))
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>();
 
-                if (String.IsNullOrEmpty(parameter_txt.Text))
+                if (!String.IsNullOrEmpty(parameter_txt.Text))
                 {
                     string[] temp;
                     char[] delimiter = { '=' };
@@ -79,6 +90,37 @@ namespace PararatonGetServiceProvider
                         parameters.Add(temp[0], temp[1]);
                     }
                 }
+
+                if (parameters.Count > 0)
+                {
+                    
+
+                }
+
+                HttpHandler requestHandler = new HttpHandler(url_path_txt.Text);
+
+                Dictionary<string, string> cookies = new Dictionary<string, string>() 
+                    { 
+                        {"JSESSIONID", jsessionid_lbl.Text},
+                        {"AWSLB", awslb_lbl.Text}
+                    };
+
+                string respond = "";
+
+                try
+                {
+                    respond = requestHandler.Request(method, parameters, cookies);
+                    respond_txt.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error Message!", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }                
+
+                respond = respond.Replace("\n", "");
+
+                respond_txt.Text = respond;
             }
         }
         
