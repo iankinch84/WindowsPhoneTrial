@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JSON_Tutorial")]
+[assembly: AssemblyTitle("Pararaton___Windows_Phone")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JSON_Tutorial")]
+[assembly: AssemblyProduct("Pararaton___Windows_Phone")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b12fbe91-b346-472a-92ea-523ac2cb4948")]
+[assembly: Guid("7121832d-76ea-4492-8ccd-8492992d15e6")]
 
 // Version information for an assembly consists of the following four values:
 //

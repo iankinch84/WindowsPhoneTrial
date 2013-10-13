@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace JSON_Tutorial
+namespace Pararaton___Windows_Phone
 {
     public partial class App : Application
     {
