@@ -35,22 +35,38 @@ namespace PararatonGetServiceProvider
             Dictionary<string, string> cookies)
         {
             string result;
+            string RequestURI = "";
 
             if (!String.IsNullOrEmpty(controller))
             {
                 controller += "/";
             }
 
-            _request = WebRequest.Create(_DefaultURL_RESTful + controller + action);
+            RequestURI = _DefaultURL_RESTful + controller + action;
 
             if (!String.IsNullOrEmpty(_URL))
             {
-                _request = WebRequest.Create(_DefaultURL_RESTful + _URL + controller + action);
+                RequestURI = _DefaultURL_RESTful + _URL + controller + action;                
             }
 
-            _request.Method = method.ToUpper();
-            _request.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
+            if (method.ToUpper() == "GET")
+            {
+                string QueryString = "?";
 
+                if (parameters != null && parameters.Count > 0)
+                {
+                    foreach (KeyValuePair<string, object> KeyValue in parameters)
+                    {
+                        QueryString += KeyValue.Key + "=" + KeyValue.Value + "&";
+                    }
+                }
+
+                RequestURI = RequestURI + QueryString;
+            }
+
+            _request = WebRequest.Create(RequestURI);
+            _request.Method = method.ToUpper();
+            
             if (cookies != null && cookies.Count > 0)
             {
                 ((HttpWebRequest)_request).CookieContainer = new CookieContainer();
@@ -64,15 +80,19 @@ namespace PararatonGetServiceProvider
 
             if (parameters != null && parameters.Count > 0)
             {
-                using (StreamWriter writer = new StreamWriter(_request.GetRequestStream()))
+                if (method.ToUpper() == "POST")
                 {
-                    foreach (KeyValuePair<string, object> KeyValue in parameters)
+                    _request.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
+                    using (StreamWriter writer = new StreamWriter(_request.GetRequestStream()))
                     {
-                        writer.Write("{0}={1}&", KeyValue.Key, KeyValue.Value.ToString());
-                    }
+                        foreach (KeyValuePair<string, object> KeyValue in parameters)
+                        {
+                            writer.Write("{0}={1}&", KeyValue.Key, KeyValue.Value.ToString());
+                        }
 
-                    writer.Close();
-                }
+                        writer.Close();
+                    }
+                }                
             }            
 
             _response = _request.GetResponse();            

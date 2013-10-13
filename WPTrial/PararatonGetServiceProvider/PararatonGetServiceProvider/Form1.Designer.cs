@@ -182,7 +182,7 @@
             // 
             this.session_id_lbl.AutoSize = true;
             this.session_id_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.session_id_lbl.Location = new System.Drawing.Point(91, 38);
+            this.session_id_lbl.Location = new System.Drawing.Point(117, 38);
             this.session_id_lbl.Name = "session_id_lbl";
             this.session_id_lbl.Size = new System.Drawing.Size(30, 17);
             this.session_id_lbl.TabIndex = 6;
@@ -194,9 +194,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(6, 38);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 17);
+            this.label5.Size = new System.Drawing.Size(105, 17);
             this.label5.TabIndex = 5;
-            this.label5.Text = "SessionID :";
+            this.label5.Text = "Access Token :";
             // 
             // label4
             // 
@@ -222,7 +222,7 @@
             // 
             this.jsessionid_lbl.AutoSize = true;
             this.jsessionid_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jsessionid_lbl.Location = new System.Drawing.Point(91, 65);
+            this.jsessionid_lbl.Location = new System.Drawing.Point(98, 65);
             this.jsessionid_lbl.Name = "jsessionid_lbl";
             this.jsessionid_lbl.Size = new System.Drawing.Size(30, 17);
             this.jsessionid_lbl.TabIndex = 9;

@@ -91,12 +91,6 @@ namespace PararatonGetServiceProvider
                     }
                 }
 
-                if (parameters.Count > 0)
-                {
-                    
-
-                }
-
                 HttpHandler requestHandler = new HttpHandler(url_path_txt.Text);
 
                 Dictionary<string, string> cookies = new Dictionary<string, string>() 
