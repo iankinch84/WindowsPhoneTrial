@@ -24,15 +24,24 @@ namespace Pararaton___Windows_Phone
 
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
         {
-            HttpHandler test = new HttpHandler();
+            Classes.HttpHandler_2 test = new Classes.HttpHandler_2();
+            HttpHandler temp = new HttpHandler();
 
-            Dictionary<string, object> parameter = new Dictionary<string, object>()
+            Dictionary<string, string> parameter = new Dictionary<string, string>()
             {
                 {"u", "ian_kinch"},
                 {"p", "asdasdasd"}
             };
 
-            string temp = test.Request("user", "login", "post", parameter, null);
+            try
+            {
+                test.Request("user", "login", "post", parameter, null);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            
         }
     }
 }
