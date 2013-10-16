@@ -15,17 +15,19 @@ namespace Pararaton___Windows_Phone.Classes
         private HttpWebRequest _HttpClientRequest;
         private HttpWebResponse _HttpClientResponse;
 
-        private const string _DefaultURL_RESTful = "http://www.pararaton.com/rest/";
-        private const string _DefaultURL = "http://www.pararaton.com/";
+        private const string _DefaultURL_RESTful = "http://localhost:8080/rest/";
+        private const string _DefaultURL = "http://localhost:8080/";
         private string _URL;
         private string _ResponseString;
         private string _ResponseHeaderString;
         
         private Dictionary<string, string> _Parameters;
+        private Dictionary<string, string> _Cookies;
 
         public HttpHandler_2()
         {
             _Parameters = new Dictionary<string, string>();
+            _Cookies = new Dictionary<string, string>();
         }
 
         public HttpHandler_2(string url)
@@ -49,6 +51,12 @@ namespace Pararaton___Windows_Phone.Classes
             _Parameters = param;
         }
 
+        public void AddCookie(Dictionary<string, string> cookies)
+        {
+            _Cookies.Clear();
+            _Cookies = cookies;
+        }
+
         public void closeHttpResponse()
         {
             _HttpClientResponse.Close();
@@ -61,6 +69,7 @@ namespace Pararaton___Windows_Phone.Classes
             string RequestURI = "";
 
             this.AddParameter(parameters);
+            this.AddCookie(cookies);
 
             if (!String.IsNullOrEmpty(controller))
             {
@@ -83,6 +92,7 @@ namespace Pararaton___Windows_Phone.Classes
                     _HttpClientRequest.UserAgent = @"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36";
                     _HttpClientRequest.ContentType = 
                         "application/x-www-form-urlencoded;charset=UTF-8";
+                    _HttpClientRequest.CookieContainer = new CookieContainer();
 
                     _HttpClientRequest.BeginGetRequestStream(new AsyncCallback
                         (GetRequestStreamCallback), _HttpClientRequest);
@@ -128,7 +138,15 @@ namespace Pararaton___Windows_Phone.Classes
                     writer.Close();
                 }
                 
-            }                        
+            }
+
+            if (_Cookies != null && _Cookies.Count > 0)
+            {
+                foreach (KeyValuePair<string, string> keyVal in _Cookies)
+                {
+                    request.CookieContainer.Add(new Uri(_DefaultURL), new Cookie(keyVal.Key, keyVal.Value));                    
+                }                
+            }
 
             // Start the asynchronous operation to get the response
             request.BeginGetResponse(new AsyncCallback(GetResponseStreamCallback), request);

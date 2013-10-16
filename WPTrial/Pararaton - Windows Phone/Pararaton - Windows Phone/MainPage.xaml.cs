@@ -33,9 +33,14 @@ namespace Pararaton___Windows_Phone
                 {"p", "asdasdasd"}
             };
 
+            Dictionary<string, string> cookie = new Dictionary<string, string>()
+            {
+                {"JSESSIONID", "755A55254CC92D920D0A9FD2E49A882A"}
+            };
+
             try
             {
-                test.Request("user", "login", "post", parameter, null);
+                test.Request("user", "login", "post", null, cookie);
             }
             catch (Exception ex)
             {
